@@ -1,25 +1,29 @@
 from selenium import webdriver
+from assets.if_name_cant_accept import userNameChanger
+from assets.get_full_name import createFullName
 from selenium.common.exceptions import NoSuchElementException
 import pyperclip, time, sys
-print("*--**--**--* |-Revised by HekiR-| *--**--**--*")
+
+
+print("*--**--**--* |-HekiR-| *--**--**--*")
 total_acc = int(input("How much you want to create acc: "))
 password = input("Create pass for acc: ")
 engine = webdriver.Chrome()
 engine.get("https://smailpro.com/advanced")
 time.sleep(3)
 
-all_iframes = engine.find_elements_by_tag_name("iframe")
-if len(all_iframes) > 0:
-    print("Ad Found, Ads Blocking...\n")
-    engine.execute_script("""
-        var deleteAds = document.getElementsByClassName('adsbygoogle-noablate');   
-        for(var i = 0; i < deleteAds.length; i++){
-            deleteAds[i].style.display = "none";
-            }
-    """)
 
-time.sleep(1)
 for i in range(1,total_acc + 1):
+    
+    all_iframes = engine.find_elements_by_tag_name("iframe")#ads search and block
+    if len(all_iframes) > 0:
+        print("Ad Found, Ads Blocking...\n")
+        engine.execute_script("""
+            var deleteAds = document.getElementsByClassName('adsbygoogle-noablate');   
+            for(var i = 0; i < deleteAds.length; i++){
+                deleteAds[i].style.display = "none";
+                }
+        """)
     print("Creating", str(i+1) + ". acc")
     engine.find_element_by_xpath("/html/body/div[3]/main/div[2]/div[1]/div[3]/div[2]/div[1]/input").click();#click "Generate temporary email"
     time.sleep(0.5)
@@ -30,17 +34,18 @@ for i in range(1,total_acc + 1):
     engine.find_element_by_xpath("/html/body/div[3]/main/div[2]/div[2]/div[1]/div[1]/button").click();#click for copy mail
     time.sleep(0.5)
     mail = pyperclip.paste()
-    fullname = "Anastasia Lukalias"
-    username = mail.rpartition('@')[0]
+    fullname = createFullName()
+    username = userNameChanger(fullname)
     chrome = webdriver.Chrome()
     chrome.get("https://www.instagram.com/accounts/emailsignup/")
     time.sleep(3)
+
     try:
         chrome.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div[3]/div/label/input").send_keys(mail)
         chrome.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div[4]/div/label/input").send_keys(fullname)
         chrome.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div[5]/div/label/input").send_keys(username)
         chrome.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div[6]/div/label/input").send_keys(password)
-        time.sleep(2)
+        time.sleep(1)
         chrome.find_element_by_xpath("/html/body/div[1]/section/main/div/div/div[1]/div/form/div[7]/div/button").click()#click register
         time.sleep(2)
     except:
