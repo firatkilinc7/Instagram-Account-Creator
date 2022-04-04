@@ -24,7 +24,7 @@ Version 0.2:
       3) Sometimes tempmail services cant generate mail. If the problem is cause to internet speed, the problem has been fixed.
       
       
-    Known Bugs:
+    Known Issues and Bugs:
       
       1) Account number input accepts only integer values. Other types not filtered.
       2) Password not filtered as Instagram requested.
