@@ -1,25 +1,24 @@
 from selenium import webdriver
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 from assets.if_name_cant_accept import userNameChanger
 from assets.get_full_name import createFullName
-from selenium.common.exceptions import NoSuchElementException
+from assets.get_proxy import getProxy
 import pyperclip, time, sys
-
 
 print("*--**--**--* |-HekiR-| *--**--**--*")
 total_acc = int(input("How much you want to create acc: "))
 password = input("Create pass for acc: ")
+wantProxy = int(input("\n***********ONLY HTTPS PROXYS***********\nDo you want use to proxy?:\n1-> 'YES'\n2-> 'NO'\n"))
 engine = webdriver.Chrome()
 engine.get("https://smailpro.com/advanced")
 time.sleep(3)
 
-
 for i in range(1,total_acc + 1):
     
-    all_iframes = engine.find_elements_by_tag_name("iframe")#ads search and block
-    if len(all_iframes) > 0:
-        print("Ad Found, Ads Blocking...\n")
-        engine.execute_script("""
-            var deleteAds = document.getElementsByClassName('adsbygoogle-noablate');   
+    engine.execute_script("""
+        var deleteAds = document.getElementsByClassName('adsbygoogle-noablate');   
             for(var i = 0; i < deleteAds.length; i++){
                 deleteAds[i].style.display = "none";
                 }
@@ -36,7 +35,17 @@ for i in range(1,total_acc + 1):
     mail = pyperclip.paste()
     fullname = createFullName()
     username = userNameChanger(fullname)
-    chrome = webdriver.Chrome()
+    
+    
+    if(wantProxy == 1):
+            instaProxy = getProxy(i)
+            prox = Proxy()#start proxy settings
+            prox.proxy_type = ProxyType.MANUAL
+            prox.http_proxy = instaProxy
+            prox.ssl_proxy = instaProxy
+            capabilities = webdriver.DesiredCapabilities.CHROME
+            prox.add_to_capabilities(capabilities)#finish proxy settings
+    chrome = webdriver.Chrome(desired_capabilities=capabilities)
     chrome.get("https://www.instagram.com/accounts/emailsignup/")
     time.sleep(3)
 
