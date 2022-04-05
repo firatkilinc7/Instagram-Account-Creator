@@ -1,6 +1,6 @@
-This program can create countless Instagram accounts.
+# This program can create countless Instagram accounts.
 
-How to use:
+### How to use:
 
 1) Get chrome driver: 
       https://chromedriver.chromium.org/downloads
@@ -15,12 +15,37 @@ How to use:
 
 
 
-Version 0.2:
+
+### Version 0.3:
 
     What Changed:
       
-      1) *New name and surname generator. You have 1.619.516.162 different fullname.
-      2) *New username generator. Sometimes Instagram cant accept your username but its fixed in V0.2.
+      1) *New* Use proxy option. Now Instagram cant ban your ip (its not impossible, not tested %100)
+      2) *New* Get HTTPS proxy from https://spys.one/en/https-ssl-proxy/ .
+      
+      
+    Known Issues and Bugs:
+      
+      1) Account number input accepts only integer values. Other types not filtered.
+      2) Password not filtered as Instagram requested.
+      3) If tempmail services cant generate email and this problem is not cause internet speed, the program throws an error.
+      4) The bot sometimes it takes max 30 proxys. This problem is caused by the website where the proxies are get from.
+      
+
+
+
+
+
+
+
+
+
+### Version 0.2:
+
+    What Changed:
+      
+      1) *New* name and surname generator. Now you can generate 1.619.516.162 different fullname.
+      2) *New* username generator. Sometimes Instagram cant accept your username but its fixed in V0.2.
       3) Sometimes tempmail services cant generate mail. If the problem is cause to internet speed, the problem has been fixed.
       
       
@@ -42,7 +67,7 @@ Version 0.2:
 
 
 
-Important Notes for Version 0.1:
+### Important Notes for Version 0.1:
 
 
       1) If you get chromedriver.exe error you must change driver version. Because your chrome version and driver version must be the same.
