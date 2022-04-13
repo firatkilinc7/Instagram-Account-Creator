@@ -30,6 +30,7 @@
       2) Password not filtered as Instagram requested.
       3) If tempmail services cant generate email and this problem is not cause internet speed, the program throws an error.
       4) The bot sometimes it takes max 30 proxys. This problem is caused by the website where the proxies are get from.
+      5) find_element_by_* commands are deprecated in selenium.
       
 
 
